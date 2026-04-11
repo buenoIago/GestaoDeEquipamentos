@@ -1,10 +1,10 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp;
 
-Equipamento[] equipamentos =  new Equipamento[100];
+Equipamento?[] equipamentos =  new Equipamento[100];
 
 while (true)
 {
-    // Console.Clear();
+    Console.Clear();
     Console.WriteLine("---------------------------------");
     Console.WriteLine("Gestão de Equipamentos");
     Console.WriteLine("---------------------------------");
@@ -25,7 +25,7 @@ while (true)
 
     if (opcaoMenu == "1")
     {
-        // Console.Clear();
+        Console.Clear();
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Gestão de Equipamentos");
         Console.WriteLine("---------------------------------");
@@ -61,7 +61,22 @@ while (true)
 
         System.Console.WriteLine("Digite a data de fabricação do equipamento: ");
         novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
-           
+
+        for (int i = 0; i < equipamentos.Length; i++)
+        {
+            Equipamento? e = equipamentos[i];
+            
+            if(e == null)
+            {
+                equipamentos[i] = novoEquipamento;
+                break;
+            }
+        }
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine($"O registro \"{novoEquipamento.nome}\" foi cadastrado com sucesso");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine($"Digite ENTER para continuar...");
+        Console.ReadLine();
     }
 
     else if (opcaoMenu == "2")
