@@ -1,8 +1,10 @@
-﻿
+﻿using GestaoDeEquipamentos.ConsoleApp;
+
+Equipamento[] equipamentos =  new Equipamento[100];
 
 while (true)
 {
-    Console.Clear();
+    // Console.Clear();
     Console.WriteLine("---------------------------------");
     Console.WriteLine("Gestão de Equipamentos");
     Console.WriteLine("---------------------------------");
@@ -23,7 +25,43 @@ while (true)
 
     if (opcaoMenu == "1")
     {
+        // Console.Clear();
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Gestão de Equipamentos");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Cadastro de Equipamentos");
+        Console.WriteLine("---------------------------------");
 
+        Equipamento novoEquipamento = new Equipamento();
+
+        do
+        {
+            System.Console.WriteLine("Digite o nome do equipamento: ");
+            novoEquipamento.nome = Console.ReadLine();
+    
+            if (string.IsNullOrWhiteSpace(novoEquipamento.nome) && novoEquipamento.nome.Length > 3)
+            {
+                break;
+            }
+        } while (true);
+
+        do
+        {
+            System.Console.WriteLine("Digite o fabricante do equipamento: ");
+            novoEquipamento.fabricante = Console.ReadLine();
+    
+            if (string.IsNullOrWhiteSpace(novoEquipamento.fabricante) && novoEquipamento.fabricante.Length > 2)
+            {
+                break;
+            }
+        } while (true);
+
+        System.Console.WriteLine("Digite o preço de aquisição do equipamento: ");
+        novoEquipamento.precoAquisicao = Convert.ToDecimal(Console.ReadLine());
+
+        System.Console.WriteLine("Digite a data de fabricação do equipamento: ");
+        novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
+           
     }
 
     else if (opcaoMenu == "2")
