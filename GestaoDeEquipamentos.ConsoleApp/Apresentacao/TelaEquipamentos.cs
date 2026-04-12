@@ -29,47 +29,52 @@ public class TelaEquipamento
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Gestão de Equipamentos");
         Console.WriteLine("---------------------------------");
-        Console.WriteLine("Cadastro de Equipamentos");
+        Console.WriteLine("Cadastro de Equipamento");
         Console.WriteLine("---------------------------------");
 
         Equipamento novoEquipamento = new Equipamento();
 
         do
         {
-            System.Console.WriteLine("Digite o nome do equipamento: ");
+            Console.Write("Digite o nome do equipamento: ");
             novoEquipamento.nome = Console.ReadLine();
-    
-            if (string.IsNullOrWhiteSpace(novoEquipamento.nome) && novoEquipamento.nome.Length >= 3)
+
+            if (!string.IsNullOrWhiteSpace(novoEquipamento.nome) &&
+                novoEquipamento.nome.Length >= 3)
             {
                 break;
             }
+
         } while (true);
 
         do
         {
-            System.Console.WriteLine("Digite o fabricante do equipamento: ");
+            Console.Write("Digite o fabricante do equipamento: ");
             novoEquipamento.fabricante = Console.ReadLine();
-    
-            if (!string.IsNullOrWhiteSpace(novoEquipamento.fabricante) && novoEquipamento.fabricante.Length > 2)
+
+            if (!string.IsNullOrWhiteSpace(novoEquipamento.fabricante) &&
+                novoEquipamento.fabricante.Length > 2)
             {
                 break;
             }
+
         } while (true);
 
-        System.Console.WriteLine("Digite o preço de aquisição do equipamento: ");
+        Console.Write("Digite o preço de aquisição do equipamento: ");
         novoEquipamento.precoAquisicao = Convert.ToDecimal(Console.ReadLine());
 
-        System.Console.WriteLine("Digite a data de fabricação do equipamento: ");
+        Console.Write("Digite a data de fabricação do equipamento: ");
         novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
 
         repositorioEquipamento.Cadastrar(novoEquipamento);
 
         Console.WriteLine("---------------------------------");
-        Console.WriteLine($"O registro \"{novoEquipamento.nome}\" foi cadastrado com sucesso");
+        Console.WriteLine($"O registro \"{novoEquipamento.id}\" foi cadastrado com sucesso.");
         Console.WriteLine("---------------------------------");
-        Console.Write($"Digite ENTER para continuar...");
+        Console.WriteLine("Digite ENTER para continuar...");
         Console.ReadLine();
     }
+
     public void Editar()
     {
         Console.Clear();
@@ -108,7 +113,7 @@ public class TelaEquipamento
             System.Console.WriteLine("Digite o id do equipamento que deseja editar");
             idSelecionado = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
+            if (!string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
                 break;
             
         } while (true);

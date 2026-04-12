@@ -18,7 +18,7 @@ TelaEquipamento telaEquipamento = new TelaEquipamento();
 telaEquipamento.repositorioEquipamento = repositorioEquipamento;
 
 TelaChamado telachamado = new TelaChamado();
-telachamado.repositoriochamado = repositorioChamado;
+telachamado.repositorioChamado = repositorioChamado;
 telachamado.repositorioEquipamento = repositorioEquipamento;
 
 while (true)
@@ -68,7 +68,7 @@ while (true)
         
         else if (opcaoMenuPrincipal == "2")
         {
-            string? opcaoMenu = telachamado.ObterEscolhaDoMenuPrincipal();
+            string? opcaoMenu = telachamado.ObterEscolhaMenuPrincipal();
 
             if (opcaoMenu == "S")
             {
