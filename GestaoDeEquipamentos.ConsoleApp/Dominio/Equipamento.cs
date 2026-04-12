@@ -7,4 +7,5 @@ public class Equipamento
     public string fabricante;
     public decimal precoAquisicao;
     public DateTime dataFabricacao;
+    internal int titulo;
 }

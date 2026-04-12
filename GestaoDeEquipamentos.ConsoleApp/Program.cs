@@ -15,7 +15,11 @@ RepositorioEquipamento repositorioEquipamento =  new RepositorioEquipamento();
 RepositorioChamado repositorioChamado = new RepositorioChamado();
 
 TelaEquipamento telaEquipamento = new TelaEquipamento();
+telaEquipamento.repositorioEquipamento = repositorioEquipamento;
+
 TelaChamado telachamado = new TelaChamado();
+telachamado.repositoriochamado = repositorioChamado;
+telachamado.repositorioEquipamento = repositorioEquipamento;
 
 while (true)
 {

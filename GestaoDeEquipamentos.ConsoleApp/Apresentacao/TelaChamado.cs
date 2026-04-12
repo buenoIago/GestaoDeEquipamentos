@@ -96,7 +96,7 @@ public class TelaChamado
         System.Console.WriteLine("Digite a descrição do chamado");
         novoChamado.descricao = Console.ReadLine();
 
-        novoChamado.dataAbertura = DateTime.Now;
+        novoChamado.dataAbertura = DateTime.Now.AddDays(-3);
 
         repositoriochamado.Cadastrar(novoChamado);
 
@@ -119,6 +119,35 @@ public class TelaChamado
 
     public void VisualizarTodos()
     {
-        
+        Console.Clear();
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Gestão de Chamados");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Visualização de Chamados");
+        Console.WriteLine("---------------------------------");
+
+        Console.WriteLine(
+            "{0, -7} | {1, -30} | {2, -15} | {3, -22} | {4, -10}",
+            "Id", "Título", "Equipamento", "Data de Abertura", "Dias desde abertura"
+        );
+
+        Chamado?[] chamados = repositoriochamado.SelecionarTodos();
+
+        for (int i = 0; i < chamados.Length; i++)
+        {
+            Chamado? c = chamados[i];
+
+            if (c == null)
+                continue;
+
+            Console.WriteLine(
+                "{0, -7} | {1, -30} | {2, -15} | {3, -22} | {4, -10}",
+                c.id, c.titulo, c.equipamento.nome, c.dataAbertura.ToShortDateString(), c.obterDiasDecorridos()
+            );
+        }
+
+        Console.WriteLine("---------------------------------");
+        Console.Write("Digite ENTER para continuar...");
+        Console.ReadLine();
     }
 }

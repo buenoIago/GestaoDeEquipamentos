@@ -5,7 +5,7 @@ namespace GestaoDeEquipamento.ConsoleApp.Apresentacao;
 
 public class TelaEquipamento
 {
-    public RepositorioEquipamento repositorio;
+    public RepositorioEquipamento repositorioEquipamento;
     public string? ObterEscolhaDoMenuPrincipal()
     {
         Console.Clear();
@@ -62,7 +62,7 @@ public class TelaEquipamento
         System.Console.WriteLine("Digite a data de fabricação do equipamento: ");
         novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
 
-        repositorio.Cadastrar(novoEquipamento);
+        repositorioEquipamento.Cadastrar(novoEquipamento);
 
         Console.WriteLine("---------------------------------");
         Console.WriteLine($"O registro \"{novoEquipamento.nome}\" foi cadastrado com sucesso");
@@ -84,7 +84,7 @@ public class TelaEquipamento
             "Id", "Nome", "Fabricante", "Preço de Aquisição", "Data de Fabricação"
         );
 
-        Equipamento?[] equipamentos = repositorio.equipamentos;
+        Equipamento?[] equipamentos = repositorioEquipamento.SelecionarTodos();
 
         for (int i = 0; i < equipamentos.Length; i++)
         {
@@ -113,7 +113,7 @@ public class TelaEquipamento
             
         } while (true);
 
-        
+       
 
         Equipamento novoEquipamento = new Equipamento();
 
@@ -145,7 +145,7 @@ public class TelaEquipamento
         System.Console.WriteLine("Digite a data de fabricação do equipamento: ");
         novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
 
-        bool conseguiuEditar = repositorio.Editar(idSelecionado, novoEquipamento);
+        bool conseguiuEditar = repositorioEquipamento.Editar(idSelecionado, novoEquipamento);
 
         
         if(!conseguiuEditar)
@@ -178,7 +178,7 @@ public class TelaEquipamento
             "Id", "Nome", "Fabricante", "Preço de Aquisição", "Data de Fabricação"
         );
 
-        Equipamento?[] equipamentos = repositorio.equipamentos;
+        Equipamento?[] equipamentos = repositorioEquipamento.equipamentos;
 
         for (int i = 0; i < equipamentos.Length; i++)
         {
@@ -205,7 +205,7 @@ public class TelaEquipamento
             
         } while (true);
 
-            bool conseguiuExcluir = repositorio.Excluir(idSelecionado);
+            bool conseguiuExcluir = repositorioEquipamento.Excluir(idSelecionado);
 
             if (conseguiuExcluir)
             {
@@ -239,7 +239,7 @@ public class TelaEquipamento
             "Id", "Nome", "Fabricante", "Preço de Aquisição", "Data de Fabricação"
         );
 
-        Equipamento?[] equipamentos = repositorio.equipamentos;
+        Equipamento?[] equipamentos = repositorioEquipamento.SelecionarTodos();
 
         for (int i = 0; i < equipamentos.Length; i++)
         {
