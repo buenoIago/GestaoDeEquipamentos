@@ -152,6 +152,7 @@ public class TelaChamado
                 break;
             
         } while (true);
+
         
         Chamado novoChamado = new Chamado();
 
@@ -166,32 +167,9 @@ public class TelaChamado
             }
         } while (true);
 
-        do
-        {   
-            System.Console.Write("Digite a descrição do chamado");
-            novoChamado.descricao = Console.ReadLine();
+        System.Console.Write("Digite a descrição do chamado: ");
+        novoChamado.descricao = Console.ReadLine();
 
-            if (!string.IsNullOrWhiteSpace(novoChamado.descricao) &&
-                novoChamado.descricao.Length >= 5)
-            {
-                break;
-            }
-
-        } while (true);
-
-        do
-        {
-            System.Console.Write("Digite o equipamento do chamado: ");
-            novoChamado.equipamento = Console.ReadLine();
-    
-            if (!string.IsNullOrWhiteSpace(novoChamado.equipamento.nome) && novoChamado.equipamento.nome.Length > 3)
-            {
-                break;
-            }
-        } while (true);
-
-        System.Console.Write("Digite a data de abertura do chamado: ");
-        novoChamado.dataAbertura = Convert.ToDateTime(Console.ReadLine());
 
         bool conseguiuEditar = repositorioChamado.Editar(idSelecionado, novoChamado);
 
