@@ -26,6 +26,7 @@ public class RepositorioEquipamento
             }
         }
     }
+
     public bool Editar(string idSelecionado, Equipamento novoEquipamento)
     {
         Equipamento? equipamentoSelecionado = SelecionarPorId(idSelecionado);
@@ -40,6 +41,27 @@ public class RepositorioEquipamento
 
         return true;
     }
+
+    public bool Excluir(string idSelecionado)
+    {
+
+        for (int i = 0; i < equipamentos.Length; i++)
+        {
+            Equipamento? e = equipamentos[i];
+
+            if (e == null)
+                break;
+
+            if (e.id == idSelecionado)
+            {
+                equipamentos[i] = null;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public Equipamento? SelecionarPorId(string idSelecionado)
     {
         Equipamento? equipamentoSelecionado = null;
@@ -60,5 +82,8 @@ public class RepositorioEquipamento
 
         return equipamentoSelecionado;
     }
-    
+    public Equipamento?[] SelecionarTodos()
+    {
+        return equipamentos;
+    }    
 }

@@ -23,7 +23,7 @@ public class TelaEquipamento
 
         return opcaoMenu;
     }
-    public void Cadastrar(Equipamento?[] equipamentos)
+    public void Cadastrar()
     {
         Console.Clear();
         Console.WriteLine("---------------------------------");
@@ -70,7 +70,7 @@ public class TelaEquipamento
         Console.Write($"Digite ENTER para continuar...");
         Console.ReadLine();
     }
-    public void Editar(Equipamento?[] equipamentos)
+    public void Editar()
     {
         Console.Clear();
         Console.WriteLine("---------------------------------");
@@ -83,6 +83,8 @@ public class TelaEquipamento
             "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, 10}",
             "Id", "Nome", "Fabricante", "Preço de Aquisição", "Data de Fabricação"
         );
+
+        Equipamento?[] equipamentos = repositorio.equipamentos;
 
         for (int i = 0; i < equipamentos.Length; i++)
         {
@@ -162,7 +164,7 @@ public class TelaEquipamento
         Console.Write($"Digite ENTER para continuar...");
         Console.ReadLine();
     }
-    public void Excluir(Equipamento?[] equipamentos)
+    public void Excluir()
     {
         Console.Clear();
         Console.WriteLine("---------------------------------");
@@ -175,6 +177,8 @@ public class TelaEquipamento
             "{0, -6} | {1, -15} | {2, -15} | {3, -22} | {4, 10}",
             "Id", "Nome", "Fabricante", "Preço de Aquisição", "Data de Fabricação"
         );
+
+        Equipamento?[] equipamentos = repositorio.equipamentos;
 
         for (int i = 0; i < equipamentos.Length; i++)
         {
@@ -201,22 +205,9 @@ public class TelaEquipamento
             
         } while (true);
 
-        bool equipamentoExcluido = false;
+            bool conseguiuExcluir = repositorio.Excluir(idSelecionado);
 
-        for (int i = 0; i < equipamentos.Length; i++)
-        {
-            Equipamento? e = equipamentos[i];
-
-            if (e == null)
-                break;
-
-            if (e.id == idSelecionado)
-            {
-                equipamentos[i] = null;
-                equipamentoExcluido = true;
-                break;
-            }
-            if (equipamentoExcluido)
+            if (conseguiuExcluir)
             {
                 Console.WriteLine("---------------------------------");
                 Console.WriteLine($"O registro \"{idSelecionado}\" foi excluído com sucesso!");
@@ -232,9 +223,9 @@ public class TelaEquipamento
                 Console.Write($"Digite ENTER para continuar...");
                 Console.ReadLine();
         }
-        }
     }
-    public void VisualizarTodos(Equipamento?[] equipamentos)
+    
+    public void VisualizarTodos()
     {
         Console.Clear();
         Console.WriteLine("---------------------------------");
@@ -247,6 +238,8 @@ public class TelaEquipamento
             "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, 10}",
             "Id", "Nome", "Fabricante", "Preço de Aquisição", "Data de Fabricação"
         );
+
+        Equipamento?[] equipamentos = repositorio.equipamentos;
 
         for (int i = 0; i < equipamentos.Length; i++)
         {
