@@ -39,7 +39,7 @@ public class TelaEquipamento
             System.Console.WriteLine("Digite o nome do equipamento: ");
             novoEquipamento.nome = Console.ReadLine();
     
-            if (string.IsNullOrWhiteSpace(novoEquipamento.nome) && novoEquipamento.nome.Length > 3)
+            if (string.IsNullOrWhiteSpace(novoEquipamento.nome) && novoEquipamento.nome.Length >= 3)
             {
                 break;
             }
@@ -133,7 +133,7 @@ public class TelaEquipamento
             System.Console.WriteLine("Digite o fabricante do equipamento: ");
             novoEquipamento.fabricante = Console.ReadLine();
     
-            if (!string.IsNullOrWhiteSpace(novoEquipamento.fabricante) && novoEquipamento.fabricante.Length > 2)
+            if (!string.IsNullOrWhiteSpace(novoEquipamento.fabricante) && novoEquipamento.fabricante.Length >= 2)
             {
                 break;
             }

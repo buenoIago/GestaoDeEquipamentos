@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using GestaoDeEquipamentos.ConsoleApp;
 using GestaoDeEquipamentos.ConsoleApp.Dominio;
 using GestaoDeEquipamento.ConsoleApp.Apresentacao;
+using GestaoDeEquipamentos.ConsoleApp.Apresentacao;
 
 // Arquitetura 3 camadas
 // Apresentação / Interface
@@ -11,34 +12,75 @@ using GestaoDeEquipamento.ConsoleApp.Apresentacao;
 
 Equipamento?[] equipamentos =  new Equipamento[100];
 TelaEquipamento telaEquipamento = new TelaEquipamento();
+TelaChamado telachamado = new TelaChamado();
 
 while (true)
 {
-    string? opcaoMenu = telaEquipamento.ObterEscolhaDoMenuPrincipal();
+    Console.Clear();
+    Console.WriteLine("---------------------------------");
+    Console.WriteLine("Gestão de Equipamentos");
+    Console.WriteLine("---------------------------------");
+    Console.WriteLine("1 - Gerenciar equipamentos");
+    Console.WriteLine("2 - Gerenciar chamados");
+    Console.WriteLine("S - Sair");
+    Console.WriteLine("---------------------------------");
+    Console.Write("> ");
+    string? opcaoMenuPrincipal = Console.ReadLine()?.ToUpper();
 
-    if (opcaoMenu == "S")
+    if (opcaoMenuPrincipal == "S")
     {
         Console.Clear();
         break;
     }
 
-    if (opcaoMenu == "1")
+    while (true)
     {
-        telaEquipamento.Cadastrar();
-    }
+        if(opcaoMenuPrincipal == "1")
+        {
+            string? opcaoMenu = telaEquipamento.ObterEscolhaDoMenuPrincipal();
 
-    else if (opcaoMenu == "2")
-    {
-        telaEquipamento.Editar();
-    }
+            if (opcaoMenu == "S")
+            {
+                Console.Clear();
+                break;
+            }
 
-    else if (opcaoMenu == "3")
-    {
-        telaEquipamento.Excluir();
-    }
+            if (opcaoMenu == "1")
+                telaEquipamento.Cadastrar();
 
-    else if (opcaoMenu == "4")
-    {
-        telaEquipamento.VisualizarTodos();
+            else if (opcaoMenu == "2")
+                telaEquipamento.Editar();
+
+            else if (opcaoMenu == "3")
+                telaEquipamento.Excluir();
+
+            else if (opcaoMenu == "4")
+                telaEquipamento.VisualizarTodos();
+
+        }
+        
+        else if (opcaoMenuPrincipal == "2")
+        {
+            string? opcaoMenu = telachamado.ObterEscolhaDoMenuPrincipal();
+
+            if (opcaoMenu == "S")
+            {
+                Console.Clear();
+                break;
+            }
+
+            if (opcaoMenu == "1")
+                telachamado.Cadastrar();
+            
+            else if (opcaoMenu == "2")
+                telachamado.Editar();
+
+            else if (opcaoMenu == "3")
+                telachamado.Excluir();
+
+            else if (opcaoMenu == "4")
+                telachamado.VisualizarTodos();
+
+        }
     }
 }

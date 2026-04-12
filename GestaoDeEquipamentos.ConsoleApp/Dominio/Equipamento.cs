@@ -1,6 +1,3 @@
-using System;
-using System.Runtime.CompilerServices;
-
 namespace GestaoDeEquipamentos.ConsoleApp.Dominio;
 
 public class Equipamento
