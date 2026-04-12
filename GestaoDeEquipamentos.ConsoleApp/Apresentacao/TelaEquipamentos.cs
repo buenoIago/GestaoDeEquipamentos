@@ -1,11 +1,11 @@
-using System;
-using System.Security.Cryptography;
 using GestaoDeEquipamentos.ConsoleApp.Dominio;
+using GestaoDeEquipamentos.ConsoleApp.Infraestrutura;
 
 namespace GestaoDeEquipamento.ConsoleApp.Apresentacao;
 
 public class TelaEquipamento
 {
+    public RepositorioEquipamento repositorio = new RepositorioEquipamento();
     public string? ObterEscolhaDoMenuPrincipal()
     {
         Console.Clear();
@@ -62,21 +62,8 @@ public class TelaEquipamento
         System.Console.WriteLine("Digite a data de fabricação do equipamento: ");
         novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
 
-        novoEquipamento.id = 
-        Convert.ToHexString(RandomNumberGenerator.GetBytes(20))
-        .ToLower()
-        .Substring(0,7);
-        
-        for (int i = 0; i < equipamentos.Length; i++)
-        {
-            Equipamento? e = equipamentos[i];
-            
-            if(e == null)
-            {
-                equipamentos[i] = novoEquipamento;
-                break;
-            }
-        }
+        repositorio.Cadastrar(novoEquipamento);
+
         Console.WriteLine("---------------------------------");
         Console.WriteLine($"O registro \"{novoEquipamento.nome}\" foi cadastrado com sucesso");
         Console.WriteLine("---------------------------------");
@@ -124,31 +111,7 @@ public class TelaEquipamento
             
         } while (true);
 
-        Equipamento? equipamentoSelecionado = null;
-
-        for(int i = 0; i < equipamentos.Length; i++)
-        {
-            Equipamento? e = equipamentos[i];
-
-            if (e == null)
-                continue;
-
-            if (e.id == idSelecionado)
-            {
-                equipamentoSelecionado = e;
-                break;
-            }
-        }
-
-        if(equipamentoSelecionado == null)
-        {
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine("Não foi possível encontrar o equipamento selecionado");
-            Console.WriteLine("---------------------------------");
-            Console.Write($"Digite ENTER para continuar...");
-            Console.ReadLine();
-            return;
-        }
+        
 
         Equipamento novoEquipamento = new Equipamento();
 
@@ -180,10 +143,18 @@ public class TelaEquipamento
         System.Console.WriteLine("Digite a data de fabricação do equipamento: ");
         novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
 
-        equipamentoSelecionado.nome = novoEquipamento.nome;
-        equipamentoSelecionado.fabricante = novoEquipamento.fabricante;
-        equipamentoSelecionado.precoAquisicao = novoEquipamento.precoAquisicao;
-        equipamentoSelecionado.dataFabricacao = novoEquipamento.dataFabricacao;
+        bool conseguiuEditar = repositorio.Editar(idSelecionado, novoEquipamento);
+
+        
+        if(!conseguiuEditar)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Não foi possível encontrar o equipamento selecionado");
+            Console.WriteLine("---------------------------------");
+            Console.Write($"Digite ENTER para continuar...");
+            Console.ReadLine();
+            return;
+        }
 
         Console.WriteLine("---------------------------------");
         Console.WriteLine($"O registro \"{idSelecionado}\" foi editado com sucesso!");
