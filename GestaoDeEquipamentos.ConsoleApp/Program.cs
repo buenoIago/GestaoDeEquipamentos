@@ -4,13 +4,16 @@ using GestaoDeEquipamentos.ConsoleApp;
 using GestaoDeEquipamentos.ConsoleApp.Dominio;
 using GestaoDeEquipamento.ConsoleApp.Apresentacao;
 using GestaoDeEquipamentos.ConsoleApp.Apresentacao;
+using GestaoDeEquipamentos.ConsoleApp.Infraestrutura;
 
 // Arquitetura 3 camadas
 // Apresentação / Interface
 // Infraestrura 
 // Domínio / Regra do negócio
 
-Equipamento?[] equipamentos =  new Equipamento[100];
+RepositorioEquipamento repositorioEquipamento =  new RepositorioEquipamento();
+RepositorioChamado repositorioChamado = new RepositorioChamado();
+
 TelaEquipamento telaEquipamento = new TelaEquipamento();
 TelaChamado telachamado = new TelaChamado();
 

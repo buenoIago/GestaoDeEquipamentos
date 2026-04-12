@@ -5,7 +5,8 @@ namespace GestaoDeEquipamentos.ConsoleApp.Apresentacao;
 
 public class TelaChamado
 {
-    public RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
+    public RepositorioChamado repositoriochamado;
+    public RepositorioEquipamento repositorioEquipamento;
     public string? ObterEscolhaDoMenuPrincipal()
     {
         Console.Clear();
@@ -96,6 +97,8 @@ public class TelaChamado
         novoChamado.descricao = Console.ReadLine();
 
         novoChamado.dataAbertura = DateTime.Now;
+
+        repositoriochamado.Cadastrar(novoChamado);
 
         Console.WriteLine("---------------------------------");
         Console.WriteLine($"O registro \"{novoChamado.id}\" foi editado com sucesso!");
