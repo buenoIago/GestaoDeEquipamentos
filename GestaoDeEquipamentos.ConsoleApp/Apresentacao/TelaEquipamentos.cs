@@ -117,9 +117,7 @@ public class TelaEquipamento
                 break;
             
         } while (true);
-
-       
-
+ 
         Equipamento novoEquipamento = new Equipamento();
 
         do

@@ -113,13 +113,6 @@ public class TelaChamado
 
     public void Editar()
     {
-        /*
-        • Deve ter um identificador único (id);
-        • Deve ter a título do chamado;
-        • Deve ter a descrição do chamado;
-        • Deve ter um equipamento;
-        • Deve ter uma data de abertura;
-        */
         Console.Clear();
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Gestão de Chamados");
@@ -186,16 +179,16 @@ public class TelaChamado
 
         } while (true);
 
-        // do
-        // {
-        //     System.Console.Write("Digite o equipamento do chamado: ");
-        //     novoChamado.equipamento = Console.ReadLine();
+        do
+        {
+            System.Console.Write("Digite o equipamento do chamado: ");
+            novoChamado.equipamento = Console.ReadLine();
     
-        //     if (!string.IsNullOrWhiteSpace(novoChamado.equipamento.nome) && novoChamado.equipamento.nome.Length > 3)
-        //     {
-        //         break;
-        //     }
-        // } while (true);
+            if (!string.IsNullOrWhiteSpace(novoChamado.equipamento.nome) && novoChamado.equipamento.nome.Length > 3)
+            {
+                break;
+            }
+        } while (true);
 
         System.Console.Write("Digite a data de abertura do chamado: ");
         novoChamado.dataAbertura = Convert.ToDateTime(Console.ReadLine());
