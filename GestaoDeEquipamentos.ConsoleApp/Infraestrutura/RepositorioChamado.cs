@@ -26,6 +26,7 @@ public class RepositorioChamado
             }
         }
     }
+
     public bool Editar(string idSelecionado, Chamado novoChamado)
     {
         Chamado? chamadoSelecionado = SelecionarPorId(idSelecionado);
@@ -40,6 +41,7 @@ public class RepositorioChamado
 
         return true;
     }
+
     public Chamado? SelecionarPorId(string idSelecionado)
     {
         Chamado? chamadoSelecionado = null;
@@ -61,6 +63,24 @@ public class RepositorioChamado
         return chamadoSelecionado;
     }
 
+    public bool Excluir(string idSelecionado)
+    {
+        for (int i = 0; i < chamados.Length; i++)
+        {
+            Chamado? c = chamados[i];
+
+            if (c == null)
+                break;
+
+            if (c.id == idSelecionado)
+            {
+                chamados[i] = null;
+                return true;
+            }
+        }
+
+        return false;
+    }
     public Chamado?[] SelecionarTodos()
     {
         return chamados;
