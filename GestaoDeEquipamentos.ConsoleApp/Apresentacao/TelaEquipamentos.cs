@@ -25,12 +25,7 @@ public class TelaEquipamento
     }
     public void Cadastrar()
     {
-        Console.Clear();
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Gestão de Equipamentos");
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Cadastro de Equipamento");
-        Console.WriteLine("---------------------------------");
+        ExibirCabecalho("Cadastro de Equipamento");
 
         Equipamento novoEquipamento = new Equipamento();
 
@@ -77,12 +72,7 @@ public class TelaEquipamento
 
     public void Editar()
     {
-        Console.Clear();
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Gestão de Equipamentos");
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Edição de Equipamentos");
-        Console.WriteLine("---------------------------------");
+        ExibirCabecalho("Edição de Equipamentos");
 
         System.Console.WriteLine(
             "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, 10}",
@@ -169,12 +159,7 @@ public class TelaEquipamento
     }
     public void Excluir()
     {
-        Console.Clear();
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Gestão de Equipamentos");
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Exclusão de Equipamentos");
-        Console.WriteLine("---------------------------------");
+        ExibirCabecalho("Exclusão de Equipamentos");
 
         System.Console.WriteLine(
             "{0, -6} | {1, -15} | {2, -15} | {3, -22} | {4, 10}",
@@ -230,12 +215,7 @@ public class TelaEquipamento
     
     public void VisualizarTodos()
     {
-        Console.Clear();
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Gestão de Equipamentos");
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Vizualização de Equipamentos");
-        Console.WriteLine("---------------------------------");
+        ExibirCabecalho("Vizualização de Equipamentos");
 
         System.Console.WriteLine(
             "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, 10}",
@@ -261,5 +241,14 @@ public class TelaEquipamento
         Console.Write($"Digite ENTER para continuar...");
         Console.ReadLine();
         
+    }
+    public void ExibirCabecalho(string titulo)
+    {
+        Console.Clear();
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Gestão de Equipamentos");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine(titulo);
+        Console.WriteLine("---------------------------------");
     }
 }
