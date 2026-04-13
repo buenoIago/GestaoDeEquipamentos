@@ -1,6 +1,7 @@
 using System;
 using GestaoDeEquipamentos.ConsoleApp.Dominio;
 using GestaoDeEquipamentos.ConsoleApp.Infraestrutura;
+
 namespace GestaoDeEquipamentos.ConsoleApp.Apresentacao;
 
 public class TelaFabricante
@@ -34,18 +35,18 @@ public class TelaFabricante
             "Id", "nome", "Fabricante", "Email", "Telefone"
         );
 
-        Fabricante?[] fabricantes = repositorioFabricante.SelecionarTodos();
+        Equipamento?[] equipamentos = RepositorioEquipamento.SelecionarTodos();
 
-        for (int i = 0; i < fabricantes.Length; i++)
+        for (int i = 0; i < equipamentos.Length; i++)
         {
-            Fabricante? f = fabricantes[i];
+            Equipamento? e = equipamentos[i];
 
-            if (f == null)
+            if (e == null)
                 continue;
 
             Console.WriteLine(
                 "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, -10}",
-                f.id, f.nome, f.fabricante, f.email, f.telefone
+                e.id, e.nome, e.fabricante, e.precoAquisicao.ToString("C2"), e.dataFabricacao.ToShortDateString()
                 );
         }
         Console.WriteLine("---------------------------------");
@@ -102,6 +103,35 @@ public class TelaFabricante
         Console.WriteLine($"O registro \"{novoFabricante.id}\" foi cadastrado com sucesso.");
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Digite ENTER para continuar...");
+        Console.ReadLine();
+    }
+
+    public void VisualizarTodos()
+    {
+        ExibirCabecalho("Vizualização de Fabricantes");
+
+         Console.WriteLine(
+            "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, -10}",
+            "Id", "nome", "Fabricante", "Email", "Telefone"
+        );
+
+        Fabricante?[] fabricantes = repositorioFabricante.SelecionarTodos();
+
+        for (int i = 0; i < fabricantes.Length; i++)
+        {
+            Fabricante? f = fabricantes[i];
+
+            if (f == null)
+                continue;
+
+            Console.WriteLine(
+                "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, -10}",
+                f.id, f.nome, f.fabricante.nome, f.email, f.telefone
+                );
+        }
+
+        Console.WriteLine("---------------------------------");
+        Console.Write("Digite ENTER para continuar...");
         Console.ReadLine();
     }
 

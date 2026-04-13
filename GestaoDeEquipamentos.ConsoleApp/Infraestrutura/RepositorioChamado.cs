@@ -52,7 +52,7 @@ public class RepositorioChamado
 
             if (c == null)
                 continue;
-
+                
             if (c.id == idSelecionado)
             {
                 chamadoSelecionado = c;

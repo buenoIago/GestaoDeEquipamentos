@@ -26,6 +26,7 @@ public class repositorioFabricante
             }
         }
     }
+    
     public Fabricante? SelecionarPorId(string idSelecionado)
     {
         Fabricante? fabricanteSelecionado = null;
