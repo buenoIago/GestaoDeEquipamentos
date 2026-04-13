@@ -13,6 +13,11 @@ using GestaoDeEquipamentos.ConsoleApp.Infraestrutura;
 
 RepositorioEquipamento repositorioEquipamento =  new RepositorioEquipamento();
 RepositorioChamado repositorioChamado = new RepositorioChamado();
+repositorioFabricante repositorioFabricante = new repositorioFabricante();
+
+TelaFabricante telaFabricante = new TelaFabricante();
+telaFabricante.repositorioFabricante = repositorioFabricante;
+
 
 TelaEquipamento telaEquipamento = new TelaEquipamento();
 telaEquipamento.repositorioEquipamento = repositorioEquipamento;
@@ -29,6 +34,7 @@ while (true)
     Console.WriteLine("---------------------------------");
     Console.WriteLine("1 - Gerenciar equipamentos");
     Console.WriteLine("2 - Gerenciar chamados");
+    Console.WriteLine("3 - Gerenciar fabricantes");
     Console.WriteLine("S - Sair");
     Console.WriteLine("---------------------------------");
     Console.Write("> ");
@@ -88,6 +94,13 @@ while (true)
             else if (opcaoMenu == "4")
                 telachamado.VisualizarTodos();
 
+        }
+        if(opcaoMenuPrincipal == "3")
+        {
+            string? opcaoMenu = telaFabricante.ObterEscolhaMenuPrincipal();
+
+            if (opcaoMenu == "1")
+                telaFabricante.Cadastrar();
         }
     }
 }

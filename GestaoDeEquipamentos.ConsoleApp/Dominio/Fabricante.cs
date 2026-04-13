@@ -15,4 +15,6 @@ public class Fabricante
     public string nome;
     public string email;
     public decimal telefone;
+    public Equipamento equipamento;
+    public Equipamento fabricante;
 }
