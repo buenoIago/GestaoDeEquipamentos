@@ -26,7 +26,22 @@ public class repositorioFabricante
             }
         }
     }
-    
+
+    public bool Editar(string idSelecionado, Fabricante novoFabricante)
+    {
+        Fabricante? fabricanteSelecionado = SelecionarPorId(idSelecionado);
+
+        if(fabricanteSelecionado == null)
+        return false;
+
+        fabricanteSelecionado.nome = novoFabricante.nome;
+        fabricanteSelecionado.equipamento = novoFabricante.equipamento;
+        fabricanteSelecionado.email = novoFabricante.email;
+        fabricanteSelecionado.telefone = novoFabricante.telefone;
+
+        return true;
+    }
+
     public Fabricante? SelecionarPorId(string idSelecionado)
     {
         Fabricante? fabricanteSelecionado = null;

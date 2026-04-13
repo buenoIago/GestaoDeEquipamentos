@@ -141,6 +141,12 @@ while (true)
             if (opcaoMenu == "1")
                 telaFabricante.Cadastrar();
 
+            else if (opcaoMenu == "2")
+                telaFabricante.Editar();
+
+            else if (opcaoMenu == "3")
+                telaFabricante.Excluir();
+
             else if (opcaoMenu == "4")
                 telaFabricante.VisualizarTodos();
         }
