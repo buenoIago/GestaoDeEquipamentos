@@ -84,7 +84,7 @@ public class TelaFabricante
             novoFabricante.nome = Console.ReadLine();
 
             if (!string.IsNullOrWhiteSpace(novoFabricante.nome) &&
-                novoFabricante.nome.Length >= 3)
+                novoFabricante.nome.Length >= 2)
             {
                 break;
             }
@@ -95,7 +95,7 @@ public class TelaFabricante
         novoFabricante.email = Console.ReadLine();
 
         Console.Write("Digite o telefone do Fabricante: ");
-        novoFabricante.telefone = Convert.ToDecimal(Console.ReadLine());
+        novoFabricante.telefone = Console.ReadLine();
 
         repositorioFabricante.Cadastrar(novoFabricante);
 
@@ -112,7 +112,7 @@ public class TelaFabricante
 
          Console.WriteLine(
             "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, -10}",
-            "Id", "nome", "Fabricante", "Email", "Telefone"
+            "Id", "Fabricante", "Nome", "Email", "Telefone"
         );
 
         Fabricante?[] fabricantes = repositorioFabricante.SelecionarTodos();
@@ -126,7 +126,7 @@ public class TelaFabricante
 
             Console.WriteLine(
                 "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, -10}",
-                f.id, f.nome, f.fabricante.nome, f.email, f.telefone
+                f.id, f.nome, f.equipamento.nome, f.email, f.telefone
                 );
         }
 

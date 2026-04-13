@@ -51,6 +51,14 @@ chamado.equipamento = equipamento;
 
 repositorioChamado.Cadastrar(chamado);
 
+Fabricante fabricante = new Fabricante();
+fabricante.nome = "Acer";
+fabricante.equipamento = equipamento;    
+fabricante.email = "Acer@gmail.com";
+fabricante.telefone = "499999";
+
+repositorioFabricante.Cadastrar(fabricante);
+
 while (true)
 {
     Console.Clear();
@@ -123,6 +131,12 @@ while (true)
         if(opcaoMenuPrincipal == "3")
         {
             string? opcaoMenu = telaFabricante.ObterEscolhaMenuPrincipal();
+
+            if (opcaoMenu == "S")
+            {
+                Console.Clear();
+                break;
+            }
 
             if (opcaoMenu == "1")
                 telaFabricante.Cadastrar();
