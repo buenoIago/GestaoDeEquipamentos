@@ -42,6 +42,25 @@ public class repositorioFabricante
         return true;
     }
 
+    public bool Excluir(string idSelecionado)
+    {
+        for (int i = 0; i < fabricantes.Length; i++)
+        {
+            Fabricante? f = fabricantes[i];
+
+            if (f == null)
+                break;
+
+            if (f.id == idSelecionado)
+            {
+                fabricantes[i] = null;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public Fabricante? SelecionarPorId(string idSelecionado)
     {
         Fabricante? fabricanteSelecionado = null;

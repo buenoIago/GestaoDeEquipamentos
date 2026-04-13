@@ -158,7 +158,7 @@ public class TelaFabricante
         System.Console.Write("Digite email do fabricante: ");
         novoFabricante.email = Console.ReadLine();
 
-        System.Console.WriteLine("Digite o telefone do fabricante:");
+        System.Console.Write("Digite o telefone do fabricante:");
         novoFabricante.telefone = Console.ReadLine();
 
         bool conseguiuEditar = repositorioFabricante.Editar(idSelecionado, novoFabricante);
@@ -182,7 +182,59 @@ public class TelaFabricante
 
     public void Excluir()
     {
-        
+        ExibirCabecalho("Exclusão de Fabricante");
+
+        Console.WriteLine(
+            "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, -10}",
+            "Id", "Fabricante", "Nome", "Email", "Telefone"
+        );
+
+        Fabricante?[] fabricantes = repositorioFabricante.SelecionarTodos();
+
+        for (int i = 0; i < fabricantes.Length; i++)
+        {
+            Fabricante? f = fabricantes[i];
+
+            if (f == null)
+                continue;
+
+            Console.WriteLine(
+                "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, -10}",
+                f.id, f.nome, f.equipamento.nome, f.email, f.telefone
+                );
+        }
+
+        string? idSelecionado;
+
+        do
+        {
+            System.Console.Write("Digite o id do fabricante que deseja excluir: ");
+            idSelecionado = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
+                break;
+            
+        } while (true);
+
+        bool conseguiuExcluir = repositorioFabricante.Excluir(idSelecionado);
+
+            if (conseguiuExcluir)
+            {
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine($"O registro \"{idSelecionado}\" foi excluído com sucesso!");
+                Console.WriteLine("---------------------------------");
+                Console.Write($"Digite ENTER para continuar...");
+                Console.ReadLine();
+            }
+            
+            else 
+            {
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine("Não foi possível encontrar o registro \"{idSelecionado}\".");
+                Console.WriteLine("---------------------------------");
+                Console.Write($"Digite ENTER para continuar...");
+                Console.ReadLine();
+            }
     }
 
     public void VisualizarTodos()
