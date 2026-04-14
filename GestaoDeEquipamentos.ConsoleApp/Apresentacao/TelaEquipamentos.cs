@@ -213,9 +213,10 @@ public class TelaEquipamento
         }
     }
     
-    public void VisualizarTodos()
+    public void VisualizarTodos(bool deveExibirCabecalho)
     {
-        ExibirCabecalho("Vizualização de Equipamentos");
+        if (deveExibirCabecalho)
+            ExibirCabecalho("Vizualização de Equipamentos");
 
         System.Console.WriteLine(
             "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, 10}",
@@ -237,11 +238,14 @@ public class TelaEquipamento
             );
         }
 
+        if (deveExibirCabecalho)
+        {
         Console.WriteLine("---------------------------------");
         Console.Write($"Digite ENTER para continuar...");
         Console.ReadLine();
-        
+        }   
     }
+    
     public void ExibirCabecalho(string titulo)
     {
         Console.Clear();

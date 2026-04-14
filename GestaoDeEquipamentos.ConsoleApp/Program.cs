@@ -65,7 +65,7 @@ while (true)
                 telaEquipamento.Excluir();
 
             else if (opcaoMenu == "4")
-                telaEquipamento.VisualizarTodos();
+                telaEquipamento.VisualizarTodos(deveExibirCabecalho: true);
 
         }
         
@@ -89,8 +89,7 @@ while (true)
                 telachamado.Excluir();
 
             else if (opcaoMenu == "4")
-                telachamado.VisualizarTodos();
-
+                telachamado.VisualizarTodos(deveExibirCabecalho: true);
         }
         if(opcaoMenuPrincipal == "3")
         {
@@ -112,7 +111,7 @@ while (true)
                 telaFabricante.Excluir();
 
             else if (opcaoMenu == "4")
-                telaFabricante.VisualizarTodos();
+                telaFabricante.VisualizarTodos(deveExibirCabecalho: true);
         }
     }
 }
