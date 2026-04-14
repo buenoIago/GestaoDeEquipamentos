@@ -27,39 +27,7 @@ public class TelaEquipamento
     {
         ExibirCabecalho("Cadastro de Equipamento");
 
-        Equipamento novoEquipamento = new Equipamento();
-
-        do
-        {
-            Console.Write("Digite o nome do equipamento: ");
-            novoEquipamento.nome = Console.ReadLine();
-
-            if (!string.IsNullOrWhiteSpace(novoEquipamento.nome) &&
-                novoEquipamento.nome.Length >= 3)
-            {
-                break;
-            }
-
-        } while (true);
-
-        do
-        {
-            Console.Write("Digite o fabricante do equipamento: ");
-            novoEquipamento.fabricante = Console.ReadLine();
-
-            if (!string.IsNullOrWhiteSpace(novoEquipamento.fabricante) &&
-                novoEquipamento.fabricante.Length > 2)
-            {
-                break;
-            }
-
-        } while (true);
-
-        Console.Write("Digite o preço de aquisição do equipamento: ");
-        novoEquipamento.precoAquisicao = Convert.ToDecimal(Console.ReadLine());
-
-        Console.Write("Digite a data de fabricação do equipamento: ");
-        novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
+        Equipamento novoEquipamento = ObterDadosCadastrais();
 
         repositorioEquipamento.Cadastrar(novoEquipamento);
 
@@ -74,33 +42,13 @@ public class TelaEquipamento
     {
         ExibirCabecalho("Edição de Equipamentos");
 
-        System.Console.WriteLine(
-            "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, 10}",
-            "Id", "Nome", "Fabricante", "Preço de Aquisição", "Data de Fabricação"
-        );
-
-        Equipamento?[] equipamentos = repositorioEquipamento.SelecionarTodos();
-
-        for (int i = 0; i < equipamentos.Length; i++)
-        {
-            Equipamento? e = equipamentos[i];
-            
-            if(e == null) 
-                continue;
-            
-            System.Console.WriteLine(
-            "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, 10}",
-            e.id, e.nome, e.fabricante, e.precoAquisicao.ToString("C2"), e.dataFabricacao.ToShortDateString()
-            );
-        }
-
-        Console.WriteLine("---------------------------------");
+        VisualizarTodos(false);
         
         string? idSelecionado;
 
         do
         {
-            System.Console.WriteLine("Digite o id do equipamento que deseja editar");
+            System.Console.Write("Digite o id do equipamento que deseja editar: ");
             idSelecionado = Console.ReadLine();
 
             if (!string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
@@ -161,31 +109,13 @@ public class TelaEquipamento
     {
         ExibirCabecalho("Exclusão de Equipamentos");
 
-        System.Console.WriteLine(
-            "{0, -6} | {1, -15} | {2, -15} | {3, -22} | {4, 10}",
-            "Id", "Nome", "Fabricante", "Preço de Aquisição", "Data de Fabricação"
-        );
-
-        Equipamento?[] equipamentos = repositorioEquipamento.equipamentos;
-
-        for (int i = 0; i < equipamentos.Length; i++)
-        {
-            Equipamento? e = equipamentos[i];
-            
-            if(e == null) 
-                continue;
-            
-            System.Console.WriteLine(
-            "{0, -6} | {1, -15} | {2, -15} | {3, -22} | {4, 10}",
-            e.id, e.nome, e.fabricante, e.precoAquisicao.ToString("C2"), e.dataFabricacao.ToShortDateString()
-            );
-        }
+        VisualizarTodos(false);
         
         string? idSelecionado;
 
         do
         {
-            System.Console.WriteLine("Digite o id do equipamento que deseja excluir");
+            System.Console.Write("Digite o id do equipamento que deseja excluir: ");
             idSelecionado = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
@@ -244,6 +174,8 @@ public class TelaEquipamento
         Console.Write($"Digite ENTER para continuar...");
         Console.ReadLine();
         }   
+        
+        Console.WriteLine("---------------------------------");
     }
     
     public void ExibirCabecalho(string titulo)
@@ -254,5 +186,44 @@ public class TelaEquipamento
         Console.WriteLine("---------------------------------");
         Console.WriteLine(titulo);
         Console.WriteLine("---------------------------------");
+    }
+
+    public Equipamento ObterDadosCadastrais()
+    {
+        Equipamento novoEquipamento = new Equipamento();
+
+        do
+        {
+            Console.Write("Digite o nome do equipamento: ");
+            novoEquipamento.nome = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(novoEquipamento.nome) &&
+                novoEquipamento.nome.Length >= 3)
+            {
+                break;
+            }
+
+        } while (true);
+
+        do
+        {
+            Console.Write("Digite o fabricante do equipamento: ");
+            novoEquipamento.fabricante = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(novoEquipamento.fabricante) &&
+                novoEquipamento.fabricante.Length > 2)
+            {
+                break;
+            }
+
+        } while (true);
+
+        Console.Write("Digite o preço de aquisição do equipamento: ");
+        novoEquipamento.precoAquisicao = Convert.ToDecimal(Console.ReadLine());
+
+        Console.Write("Digite a data de fabricação do equipamento: ");
+        novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
+
+        return novoEquipamento;
     }
 }
