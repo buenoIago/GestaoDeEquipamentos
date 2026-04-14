@@ -96,7 +96,7 @@ public class TelaChamado
         Console.Write("Digite o descrição do chamado: ");
         novoChamado.descricao = Console.ReadLine();
 
-        novoChamado.dataAbertura = DateTime.Now.AddDays(-3);
+        novoChamado.dataAbertura = DateTime.Now;
 
         repositorioChamado.Cadastrar(novoChamado);
 
@@ -111,25 +111,8 @@ public class TelaChamado
     {
         ExibirCabecalho("Edição de Chamados");
 
-        Console.WriteLine(
-            "{0, -7} | {1, -30} | {2, -15} | {3, -22} | {4, -10}",
-            "Id", "Título", "Equipamento", "Data de Abertura", "Dias desde abertura"
-        );
+        VisualizarTodos(false);
 
-        Chamado?[] chamados = repositorioChamado.SelecionarTodos();
-
-        for (int i = 0; i < chamados.Length; i++)
-        {
-            Chamado? c = chamados[i];
-
-            if (c == null)
-                continue;
-
-            Console.WriteLine(
-                "{0, -7} | {1, -30} | {2, -15} | {3, -22} | {4, -10}",
-                c.id, c.titulo, c.equipamento.nome, c.dataAbertura.ToShortDateString(), c.obterDiasDecorridos()
-            );
-        }
         Console.WriteLine("---------------------------------");
         
         string? idSelecionado;
@@ -185,25 +168,7 @@ public class TelaChamado
     {
         ExibirCabecalho("Exclusão de Chamados");
 
-        Console.WriteLine(
-            "{0, -7} | {1, -30} | {2, -15} | {3, -22} | {4, -10}",
-            "Id", "Título", "Equipamento", "Data de Abertura", "Dias desde abertura"
-        );
-
-        Chamado?[] chamados = repositorioChamado.SelecionarTodos();
-
-        for (int i = 0; i < chamados.Length; i++)
-        {
-            Chamado? c = chamados[i];
-
-            if (c == null)
-                continue;
-
-            Console.WriteLine(
-                "{0, -7} | {1, -30} | {2, -15} | {3, -22} | {4, -10}",
-                c.id, c.titulo, c.equipamento.nome, c.dataAbertura.ToShortDateString(), c.obterDiasDecorridos()
-            );
-        }
+        VisualizarTodos(false);
 
         string? idSelecionado;
 
@@ -237,9 +202,11 @@ public class TelaChamado
         }
     }
 
-    public void VisualizarTodos()
+    public void VisualizarTodos(bool deveExibirCabecalho)
     {
-        ExibirCabecalho("Visualização de Chamados");
+
+        if(deveExibirCabecalho)
+            ExibirCabecalho("Vizualização de Chamados");
 
         Console.WriteLine(
             "{0, -7} | {1, -30} | {2, -15} | {3, -22} | {4, -10}",
@@ -261,9 +228,17 @@ public class TelaChamado
             );
         }
 
-        Console.WriteLine("---------------------------------");
-        Console.Write("Digite ENTER para continuar...");
-        Console.ReadLine();
+        if (deveExibirCabecalho)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.Write("Digite ENTER para continuar...");
+            Console.ReadLine();
+        }    
+    }
+
+    public void ExibirDadosCadastrais()
+    {
+        
     }
     public void ExibirCabecalho(string titulo)
     {

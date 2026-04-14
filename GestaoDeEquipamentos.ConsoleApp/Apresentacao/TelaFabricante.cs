@@ -237,8 +237,9 @@ public class TelaFabricante
             }
     }
 
-    public void VisualizarTodos()
+    public void VisualizarTodos(bool deveExibirCabecalho)
     {
+        if (deveExibirCabecalho)
         ExibirCabecalho("Vizualização de Fabricantes");
 
         Console.WriteLine(
@@ -261,9 +262,12 @@ public class TelaFabricante
                 );
         }
 
-        Console.WriteLine("---------------------------------");
-        Console.Write("Digite ENTER para continuar...");
-        Console.ReadLine();
+        if (deveExibirCabecalho)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.Write("Digite ENTER para continuar...");
+            Console.ReadLine();
+        }
     }
 
     public void ExibirCabecalho(string titulo)
