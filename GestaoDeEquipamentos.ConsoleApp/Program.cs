@@ -22,6 +22,38 @@ TelaChamado telachamado = new TelaChamado();
 telachamado.repositorioChamado = repositorioChamado;
 telachamado.repositorioEquipamento = repositorioEquipamento;
 
+// Dados teste
+Equipamento equipamento = new Equipamento();
+equipamento.nome = "Notebook";
+equipamento.fabricante = "Acer";
+equipamento.precoAquisicao = 2000;
+equipamento.dataFabricacao = DateTime.Now.AddYears(-5);
+
+Equipamento equipamento2 = new Equipamento();
+equipamento2.nome = "Monitor";
+equipamento2.fabricante = "LG";
+equipamento2.precoAquisicao = 1200;
+equipamento2.dataFabricacao = DateTime.Now.AddYears(-4);
+
+repositorioEquipamento.Cadastrar(equipamento);
+repositorioEquipamento.Cadastrar(equipamento2);
+
+Chamado chamado = new Chamado();
+chamado.titulo = "Quebrou o display";
+chamado.descricao = "Está com deadpixel";
+chamado.dataAbertura = DateTime.Now.AddDays(-7);
+chamado.equipamento = equipamento;
+
+repositorioChamado.Cadastrar(chamado);
+
+Fabricante fabricante = new Fabricante();
+fabricante.nome = "Acer";
+fabricante.equipamento = equipamento;    
+fabricante.email = "Acer@gmail.com";
+fabricante.telefone = "499999";
+
+repositorioFabricante.Cadastrar(fabricante);
+
 
 while (true)
 {
